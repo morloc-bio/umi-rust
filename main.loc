@@ -1,0 +1,27 @@
+--' Rust implementation of the umi module
+module umi-rust (*)
+
+import umi
+import dup-rust
+import bio-rust
+
+record Rust => UmiDigest = "UmiDigest"
+record Rust => UmiKeep = "UmiKeep"
+
+source Rust from "umi.rs"
+  ( "umi_extract_pairs" as extractUmiPairs
+  , "umi_extract_reads" as extractUmiReads
+  , "umi_of_header" as umiOfHeader
+  , "umi_clusters" as umiClusters
+  , "umi_records" as umiRecordsWith
+  , "umi_stream_indices" as streamIndices
+  , "umi_digest" as umiDigest
+  , "umi_merge_digest" as mergeUmiDigest
+  , "umi_same_digest" as sameUmiDigest
+  , "umi_keep_sorted" as umiKeepSortedNative
+  , "umi_keep_fragments" as keepFragments
+  , "umi_dedup_text" as umiDedupText
+  )
+
+umiRecordsWith :: Int -> DupKeys -> [Str] -> [U64] -> [U64]
+umiRecords k u o = umiRecordsWith (dupRustAnchor 0) k u o

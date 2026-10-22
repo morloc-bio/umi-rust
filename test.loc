@@ -1,0 +1,5 @@
+--' The umi test suite against umi-rust
+module test-umi-rust (test)
+
+import umi.test (test)
+import umi-rust
